@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "builds": [
+    "build next": [
       {
         "src": "api/contact.php",
         "use": "@vercel/php"
