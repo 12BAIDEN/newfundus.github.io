@@ -46,23 +46,23 @@
         "use": "@vercel/static"
       },
       {
-        "src": "css/*",
+        "src": "css/(.*)",
         "use": "@vercel/static"
       },
       {
-        "src": "scss/*",
+        "src": "scss/(.*)",
         "use": "@vercel/static"
       },
       {
-        "src": "lib/*",
+        "src": "lib/(.*)",
         "use": "@vercel/static"
       },
       {
-        "src": "img/*",
+        "src": "img/(.*)",
         "use": "@vercel/static"
       },
       {
-        "src": "js/*",
+        "src": "js/(.*)",
         "use": "@vercel/static"
       }
     ],
