@@ -73,11 +73,8 @@
         { "src": "/scss/*", "dest": "/scss/$1" },
         { "src": "/lib/*", "dest": "/lib/$1" },
         { "src": "/img/*", "dest": "/img/$1" },
-        { "src": "/js/*", "dest": "/js/$1" },
+        { "src": "/js/(.*)", "dest": "/js/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } }, 
         { "src": "/*", "dest": "/index.html" }
-      ],
-      "rewrites": [
-        { "source": "/js/(.*)", "destination": "/js/$1" }
       ] 
         }
   
