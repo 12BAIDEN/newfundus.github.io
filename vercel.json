@@ -10,7 +10,7 @@
         "use": "@vercel/static"
       },
       {
-        "src": "contacts.html",
+        "src": "contact.html",
         "use": "@vercel/static"
       },
       {
