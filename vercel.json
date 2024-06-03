@@ -8,7 +8,68 @@
       {
         "src": "index.html",
         "use": "@vercel/static"
+      },
+      {
+        "src": "contacts.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "about.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "causes.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "donate.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "health.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "service.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "team.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "education.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "basicAmenities.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "css/*",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "scss/*",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "lib/*",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "img/*",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "js/*",
+        "use": "@vercel/static"
       }
+    ],
+    "routes": [
+      { "src": "/api/contact.php", "dest": "/api/contact.php" },
+      { "src": "/contacts", "dest": "/contacts.html" },
+      { "src": "/(.*)", "dest": "/index.html" }
     ]
   }
   
