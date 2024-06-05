@@ -39,12 +39,12 @@
     <!-- Spinner End -->
 
 
-    <!-- Navbar Start -->
+     <!-- Navbar Start -->
     <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="top-bar text-white-50 row gx-0 align-items-center d-none d-lg-flex">
             <div class="col-lg-6 px-5 text-start">
-                <small><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
-                <small class="ms-4"><i class="fa fa-envelope me-2"></i>info@example.com</small>
+                <small><i class="fa fa-map-marker-alt me-2"></i>Dorothy Aseidu Drive, Kumasi, Ghana</small>
+                <small class="ms-4"><i class="fa fa-envelope me-2"></i>baidenantwi9@gmail.com</small>
             </div>
             <div class="col-lg-6 px-5 text-end">
                 <small>Follow us:</small>
@@ -57,7 +57,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
             <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
-                <h1 class="fw-bold text-primary m-0">Chari<span class="text-white">Logo</span></h1>
+                <h1 class="fw-bold text-primary m-0">Fund<span class="text-white">Us</span></h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -66,12 +66,12 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="index.html" class="nav-item nav-link">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="causes.html" class="nav-item nav-link">Causes</a>
+                    <a href="causes.html" class="nav-item nav-link active">Causes</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
                             <a href="service.html" class="dropdown-item">Service</a>
-                            <a href="donate.html" class="dropdown-item active">Donate</a>
+                            <a href="donate.html" class="dropdown-item">Donate</a>
                             <a href="team.html" class="dropdown-item">Our Team</a>
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             <a href="404.html" class="dropdown-item">404 Page</a>
@@ -110,67 +110,84 @@
 
 
     <!-- Donate Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Donate Now</div>
-                    <h1 class="display-6 mb-5">Thanks For The Results Achieved With You</h1>
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="h-100 bg-secondary p-5">
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control bg-light border-0" id="name" placeholder="Your Name">
-                                        <label for="name">Your Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control bg-light border-0" id="email" placeholder="Your Email">
-                                        <label for="email">Your Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group d-flex justify-content-around">
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" checked>
-                                        <label class="btn btn-light py-3" for="btnradio1">$10</label>
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Donate Now</div>
+                <h1 class="display-6 text-white mb-5">Thank You for Helping Us Achieve These Milestones</h1>
+                <p class="text-white-50 mb-0">
+                    Thanks for the Results Achieved with You
+                    Your unwavering support has been instrumental in achieving the incredible milestones we celebrate today. Your contributions have enabled us to provide essential services and support to those in need, from education to clean water and nutritious food.
+                    Together, we have made a tangible difference in countless lives. Thank you for being a crucial part of our journey. With your continued support, we look forward to transforming even more lives and communities around the world.
+                </p>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <div class="h-100 bg-white p-5">
+                    <form action="/submit-donation" method="post">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" class="form-control bg-light border-0" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control bg-light border-0" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="currency">Currency</label>
+                            <select id="currency" class="form-control bg-light border-0" name="currency" required onchange="updateCurrencySymbol()">
+                                <option value="USD" data-symbol="$">USD</option>
+                                <option value="EUR" data-symbol="€">EUR</option>
+                                <option value="GBP" data-symbol="£">GBP</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Donation Amount</label>
+                            <div class="btn-group d-flex justify-content-around" role="group">
+                                <input type="radio" class="btn-check" name="amount" id="amount-10" value="10" onclick="updateCustomAmount(10)">
+                                <label class="btn btn-light py-3" for="amount-10" id="label-amount-10">$10</label>
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2">
-                                        <label class="btn btn-light py-3" for="btnradio2">$20</label>
+                                <input type="radio" class="btn-check" name="amount" id="amount-50" value="50" onclick="updateCustomAmount(50)">
+                                <label class="btn btn-light py-3" for="amount-50" id="label-amount-50">$50</label>
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3">
-                                        <label class="btn btn-light py-3" for="btnradio3">$30</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary px-5" style="height: 60px;">
-                                        Donate Now
-                                        <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </div>
-                                    </button>
-                                </div>
+                                <input type="radio" class="btn-check" name="amount" id="amount-100" value="100" onclick="updateCustomAmount(100)">
+                                <label class="btn btn-light py-3" for="amount-100" id="label-amount-100">$100</label>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="custom-amount">Or Enter a Custom Amount</label>
+                            <input type="number" class="form-control bg-light border-0" id="custom-amount" name="custom-amount" min="1" step="any" placeholder="Custom Amount" oninput="clearRadioButtons()">
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-method">Payment Method</label>
+                            <select id="payment-method" class="form-control bg-light border-0" name="payment-method" required>
+                                <option value="credit-card">Credit Card</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="bank-transfer">Bank Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary px-5" style="height: 60px;">
+                                Donate Now
+                                <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Donate End -->
+    <!-- Donate end-->
         
 
-    <!-- Footer Start -->
+       <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h1 class="fw-bold text-primary mb-4">Chari<span class="text-white">Logo</span></h1>
-                    <p>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita</p>
+                    <h1 class="fw-bold text-primary mb-4">Fund<span class="text-white">Us</span></h1>
+                    <p></p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square me-1" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square me-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -180,9 +197,9 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Address</h5>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>Dorothy Asidu Drive, Kumasi, Ghana</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+233 542 388 788</p>
+                    <p><i class="fa fa-envelope me-3"></i>baidenantwi9@gmail.com</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Quick Links</h5>
@@ -194,7 +211,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Newsletter</h5>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <p>SignUp for our newsletter to get instant updates and news </p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
                         <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
@@ -206,17 +223,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                        &copy; <a href="#">FundUs</a>, All Right Reserved.
                     </div>
                     <div class="col-md-6 text-center text-md-end">
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://freewebsitecreate.net/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a href="https://freewebsitecreate.net">Free Website Create</a>
+                         <a href="https://freewebsitecreate.net"></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
+
 
 
     <!-- Back to Top -->
@@ -232,8 +249,42 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/parallax/parallax.min.js"></script>
 
-    <!-- Template Javascript -->
+    <!-- Javascript -->
     <script src="js/main.js"></script>
+       <script>
+    function updateCustomAmount(amount) {
+        document.getElementById('custom-amount').value = amount;
+    }
+
+    function clearRadioButtons() {
+        var radios = document.getElementsByName('amount');
+        for (var i = 0; i < radios.length; i++) {
+            radios[i].checked = false;
+        }
+    }
+
+    function updateCurrencySymbol() {
+        var currencySelect = document.getElementById('currency');
+        var selectedOption = currencySelect.options[currencySelect.selectedIndex];
+        var symbol = selectedOption.getAttribute('data-symbol');
+
+        document.getElementById('label-amount-10').textContent = symbol + '10';
+        document.getElementById('label-amount-50').textContent = symbol + '50';
+        document.getElementById('label-amount-100').textContent = symbol + '100';
+
+        // update the custom amount value to reflect the new currency symbol
+        var selectedAmount = document.querySelector('input[name="amount"]:checked');
+        if (selectedAmount) {
+            document.getElementById('custom-amount').value = selectedAmount.value;
+        }
+    }
+
+    // Initialize the currency symbol on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCurrencySymbol();
+    });
+</script>
+
 </body>
 
 </html>
