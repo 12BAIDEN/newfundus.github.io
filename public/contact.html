@@ -236,28 +236,36 @@
 
     <!-- Javascript -->
     <script src="js/main.js"></script>
-   <script>
-    function submitForm(event) {
-        event.preventDefault();
-        
-        const form = document.getElementById('contactForm');
-        const formData = new FormData(form);
-        
-        fetch('/api/contacts.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('formResponse').innerHTML = data;
-            form.reset();
-        })
-        .catch(error => {
-            document.getElementById('formResponse').innerHTML = 'There was an error submitting the form';
-            console.error('Error:', error);
+     <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            fetch('https://your-render-url/api/send-email', { // replace 'https://your-render-url' with your actual Render URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, subject, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('formResponse').innerText = 'Email sent successfully!';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    document.getElementById('formResponse').innerText = 'Error sending email: ' + data.message;
+                }
+            })
+            .catch(error => {
+                document.getElementById('formResponse').innerText = 'There was an error submitting the form';
+                console.error('Error:', error);
+            });
         });
-    }
-</script>
+    </script>
 </body>
 
 </html>
