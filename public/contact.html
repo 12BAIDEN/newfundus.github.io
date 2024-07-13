@@ -237,36 +237,35 @@
 
     <!-- Javascript -->
     <script src="js/main.js"></script>
-     <script>
-        document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+   <script>
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault();
 
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
 
-            fetch('https://email-sender-server-cu1i.onrender.com', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, subject, message })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    document.getElementById('formResponse').innerText = 'Email sent successfully!';
-                    document.getElementById('contactForm').reset();
-                } else {
-                    document.getElementById('formResponse').innerText = 'Error sending email: ' + data.message;
-                }
-            })
-            .catch(error => {
-                document.getElementById('formResponse').innerText = 'There was an error submitting the form';
-                console.error('Error:', error);
-            });
+        fetch('https://email-sender-server-cu1i.onrender.com', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, subject, message })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert('Email sent successfully!');
+            } else {
+                alert('Error sending email: ' + data.message);
+            }
+        })
+        .catch(error => {
+            alert('Error sending email: ' + error.message);
         });
-    </script>
+    });
+</script>
+
 </body>
 
 </html>
