@@ -261,6 +261,7 @@
             .then(data => {
                 if (data.status === 'success') {
                     document.getElementById('formResponse').innerText = 'Email sent successfully!';
+                    document.getElementById('contactForm').reset();
                 } else {
                     document.getElementById('formResponse').innerText = 'Error sending email: ' + data.message;
                 }
