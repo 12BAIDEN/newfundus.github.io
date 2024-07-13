@@ -109,77 +109,82 @@
     <!-- Page Header End -->
 
 
-    <!-- Donate Start -->
-    <div class="container py-5">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Donate Now</div>
-                <h1 class="display-6 text-white mb-5">Thank You for Helping Us Achieve These Milestones</h1>
-                <p class="text-white-50 mb-0">
-                    Thanks for the Results Achieved with You
-                    Your unwavering support has been instrumental in achieving the incredible milestones we celebrate today. Your contributions have enabled us to provide essential services and support to those in need, from education to clean water and nutritious food.
-                    Together, we have made a tangible difference in countless lives. Thank you for being a crucial part of our journey. With your continued support, we look forward to transforming even more lives and communities around the world.
-                </p>
-            </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <div class="h-100 bg-white p-5">
-                    <form action="/submit-donation" method="post">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" class="form-control bg-light border-0" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" class="form-control bg-light border-0" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="currency">Currency</label>
-                            <select id="currency" class="form-control bg-light border-0" name="currency" required onchange="updateCurrencySymbol()">
-                                <option value="USD" data-symbol="$">USD</option>
-                                <option value="EUR" data-symbol="€">EUR</option>
-                                <option value="GBP" data-symbol="£">GBP</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Donation Amount</label>
-                            <div class="btn-group d-flex justify-content-around" role="group">
-                                <input type="radio" class="btn-check" name="amount" id="amount-10" value="10" onclick="updateCustomAmount(10)">
-                                <label class="btn btn-light py-3" for="amount-10" id="label-amount-10">$10</label>
+<!-- Donate Start -->
+<div class="container py-5">
+    <div class="row g-5 align-items-center">
+        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+            <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Donate Now</div>
+            <h1 class="display-6 text-white mb-5">Thank You for Helping Us Achieve These Milestones</h1>
+            <p class="text-white-50 mb-0">
+                Thanks for the Results Achieved with You
+                Your unwavering support has been instrumental in achieving the incredible milestones we celebrate today. Your contributions have enabled us to provide essential services and support to those in need, from education to clean water and nutritious food.
+                Together, we have made a tangible difference in countless lives. Thank you for being a crucial part of our journey. With your continued support, we look forward to transforming even more lives and communities around the world.
+            </p>
+        </div>
+        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <div class="h-100 bg-white p-5">
+                <form id="donation-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" class="form-control bg-light border-0" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control bg-light border-0" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="currency">Currency</label>
+                        <select id="currency" class="form-control bg-light border-0" name="currency" required>
+                            <option value="USD" data-symbol="$">USD</option>
+                            <option value="EUR" data-symbol="€">EUR</option>
+                            <option value="GBP" data-symbol="£">GBP</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Donation Amount</label>
+                        <div class="btn-group d-flex justify-content-around" role="group">
+                            <input type="radio" class="btn-check" name="amount" id="amount-10" value="10" onclick="updateCustomAmount(10)">
+                            <label class="btn btn-light py-3" for="amount-10" id="label-amount-10">$10</label>
 
-                                <input type="radio" class="btn-check" name="amount" id="amount-50" value="50" onclick="updateCustomAmount(50)">
-                                <label class="btn btn-light py-3" for="amount-50" id="label-amount-50">$50</label>
+                            <input type="radio" class="btn-check" name="amount" id="amount-50" value="50" onclick="updateCustomAmount(50)">
+                            <label class="btn btn-light py-3" for="amount-50" id="label-amount-50">$50</label>
 
-                                <input type="radio" class="btn-check" name="amount" id="amount-100" value="100" onclick="updateCustomAmount(100)">
-                                <label class="btn btn-light py-3" for="amount-100" id="label-amount-100">$100</label>
+                            <input type="radio" class="btn-check" name="amount" id="amount-100" value="100" onclick="updateCustomAmount(100)">
+                            <label class="btn btn-light py-3" for="amount-100" id="label-amount-100">$100</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-amount">Or Enter a Custom Amount</label>
+                        <input type="number" class="form-control bg-light border-0" id="custom-amount" name="custom-amount" min="1" step="any" placeholder="Custom Amount" oninput="clearRadioButtons()">
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-method">Payment Method</label>
+                        <select id="payment-method" class="form-control bg-light border-0" name="payment-method" required>
+                            <option value="credit-card">Credit Card</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="bank-transfer">Bank Transfer</option>
+                            <option value="mtn-mobile-money">MTN Mobile Money</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number (for Mobile Money)</label>
+                        <input type="tel" class="form-control bg-light border-0" id="phone" name="phone" placeholder="Your Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary px-5" style="height: 60px;" onclick="submitDonationForm()">
+                            Donate Now
+                            <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="custom-amount">Or Enter a Custom Amount</label>
-                            <input type="number" class="form-control bg-light border-0" id="custom-amount" name="custom-amount" min="1" step="any" placeholder="Custom Amount" oninput="clearRadioButtons()">
-                        </div>
-                        <div class="form-group">
-                            <label for="payment-method">Payment Method</label>
-                            <select id="payment-method" class="form-control bg-light border-0" name="payment-method" required>
-                                <option value="credit-card">Credit Card</option>
-                                <option value="paypal">PayPal</option>
-                                <option value="bank-transfer">Bank Transfer</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary px-5" style="height: 60px;">
-                                Donate Now
-                                <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
-                                    <i class="fa fa-arrow-right"></i>
-                                </div>
-                            </button>
-                        </div>
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Donate end-->
-        
+</div>
+<!-- Donate end-->
+  
 
        <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -252,6 +257,45 @@
     <!-- Javascript -->
     <script src="js/main.js"></script>
        <script>
+
+function updateCustomAmount(amount) {
+    document.getElementById('custom-amount').value = '';
+}
+
+function clearRadioButtons() {
+    const radioButtons = document.querySelectorAll('input[name="amount"]');
+    radioButtons.forEach(radio => radio.checked = false);
+}
+
+function submitDonationForm() {
+    const form = document.getElementById('donation-form');
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    fetch('https://paystack-mtn-integration.onrender.com', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status && data.data.authorization_url) {
+            window.location.href = data.data.authorization_url;
+        } else {
+            console.error('Error initializing transaction:', data);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+
+
+
     function updateCustomAmount(amount) {
         document.getElementById('custom-amount').value = amount;
     }
