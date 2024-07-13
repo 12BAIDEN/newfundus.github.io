@@ -257,27 +257,23 @@
     <!-- Javascript -->
     <script src="js/main.js"></script>
        <script>
+       document.getElementById('donation-form').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-function updateCustomAmount(amount) {
-    document.getElementById('custom-amount').value = '';
-}
-
-function clearRadioButtons() {
-    const radioButtons = document.querySelectorAll('input[name="amount"]');
-    radioButtons.forEach(radio => radio.checked = false);
-}
-
-function submitDonationForm() {
-    const form = document.getElementById('donation-form');
+    const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    fetch('https://paystack-mtn-integration.onrender.com', {
+    fetch('https://paystack-mtn-integration.onrender.com/initialize', { // Replace with your Render URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+            email: data.email,
+            amount: data['custom-amount'] || data.amount, // Handle both preset and custom amounts
+            phone: data.phone // Assuming you have a phone field in your form
+        })
     })
     .then(response => response.json())
     .then(data => {
@@ -290,7 +286,8 @@ function submitDonationForm() {
     .catch(error => {
         console.error('Error:', error);
     });
-}
+});
+
 
 
 
