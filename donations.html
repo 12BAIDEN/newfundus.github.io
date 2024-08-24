@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donations</title>
+</head>
+<body>
+    <h1>Donation List</h1>
+    <div id="donations-container" class="container-xxl bg-light my-5 py-5"></div>
+
+   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the cause type from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const causeType = urlParams.get('type');
+    
+        console.log("Donation Type:", DonationType);  // Log the cause type to the console
+    
+        if (DonationType) {
+            // Perform the fetch request to get donations for the selected cause type
+            fetch(`https://your-backend-url.com/donations/${DonationType}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Fetched Data:", data);  // Log the fetched data to the console
+                    if (data.length > 0) {
+                        displayDonations(data);
+                    } else {
+                        document.getElementById('donations-container').innerHTML = '<p>No donations found for this cause.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching donations:', error);
+                    document.getElementById('donations-container').innerHTML = '<p>Error loading donations.</p>';
+                });
+        } else {
+            document.getElementById('donations-container').innerHTML = '<p>No cause type provided.</p>';
+        }
+    });
+    
+    function displayDonations(donations) {
+        const container = document.getElementById('donations-container');
+        container.innerHTML = '';
+        donations.forEach(donation => {
+            const donationElement = document.createElement('div');
+            donationElement.className = 'donation-item';
+            donationElement.innerHTML = `
+                <h3>${donation.title}</h3>
+                <p>Goal: $${donation.goal}</p>
+                <p>Raised: $${donation.raised}</p>
+                <p>${donation.case}</p>
+                <img src="${donation.imageUrl}" alt="${donation.title}" />
+            `;
+            container.appendChild(donationElement);
+        });
+    }
+    </script>
+
+
+    <script src="donations.js"></script>
+
+
+</body>
+</html>
