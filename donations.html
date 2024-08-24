@@ -6,9 +6,14 @@
     <title>Donations</title>
 </head>
 <body>
-    <h1>Donation List</h1>
-    <div id="donations-container" class="container-xxl bg-light my-5 py-5"></div>
- <script>
+    <div id="donations-container" class="container-xxl bg-light my-5 py-5">
+        <!-- Donations will be displayed here -->
+    </div>
+
+    <!-- Include the correct path for your JavaScript file -->
+
+
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Get the typeid from the URL
             const urlParams = new URLSearchParams(window.location.search);
@@ -18,6 +23,7 @@
             if (typeId) {
                 fetch(`https://mongodb-a2ti.onrender.com/donations/${typeId}`)
                     .then(response => {
+                        console.log('Response:', response); // Log the response
                         if (!response.ok) {
                             throw new Error('Network response was not ok ' + response.statusText);
                         }
@@ -57,10 +63,5 @@
             });
         }
     </script>
-
-
-    <script src="donations.js"></script>
-
-
 </body>
 </html>
