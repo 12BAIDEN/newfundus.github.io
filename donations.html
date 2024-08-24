@@ -57,7 +57,7 @@
                     <p>Goal: $${donation.goal}</p>
                     <p>Raised: $${donation.raised}</p>
                     <p>${donation.case}</p>
-                    <img src="${donation.imageUrl}" alt="${donation.title}" />
+                    <img src="${{donation.imageUrl}}" alt="${donation.title}" />
                 `;
                 container.appendChild(donationElement);
             });
