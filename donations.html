@@ -1,147 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donations</title>
-
-    <!-- Include CSS Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
-    
-    <style>
-        /* Spinner styling */
-        .spinner {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-size: 2rem;
-            color: #fff;
-            background-color: #000;
-        }
-
-        /* Container styling */
-        #donations-container {
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-
-        /* Donation item styling */
-        .donation-item {
-            padding: 15px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .donation-item img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 10px;
-        }
-    </style>
 </head>
-
 <body>
-
-    <div id="spinner" class="spinner">
-        <!-- Spinner content -->
+    <div id="spinner" class="spinner" style="display:none;">
+        <!-- Spinner content, e.g., a loading animation -->
         <p>Loading...</p>
     </div>
-
     <div id="donations-container" class="container-xxl bg-light my-5 py-5">
         <!-- Donations will be displayed here -->
-        <div id="donation-carousel" class="owl-carousel owl-theme">
-            <!-- Donation items will be injected here -->
-        </div>
     </div>
 
-    <!-- Include JS Libraries -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-
     <script>
-        $(document).ready(function () {
-            // Initialize WOW.js for reveal animations
-            new WOW().init();
+        document.addEventListener("DOMContentLoaded", function() {
+            const spinner = document.getElementById('spinner');
+            const container = document.getElementById('donations-container');
 
-            // Initialize Owl Carousel
-            $("#donation-carousel").owlCarousel({
-                items: 1,
-                loop: true,
-                margin: 10,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                animateOut: 'fadeOut',
-                animateIn: 'fadeIn',
-                nav: true,
-            });
-
-            // Spinner element and donations container
-            const spinner = $('#spinner');
-            const container = $('#donations-container');
-
-            // Show spinner
-            spinner.show();
+            // Show the spinner
+            spinner.style.display = 'block';
 
             // Get the typeid from the URL
             const urlParams = new URLSearchParams(window.location.search);
             const typeId = urlParams.get('typeid');
+            console.log("Type ID:", typeId);  // Log the type ID
 
             if (typeId) {
                 fetch(`https://mongodb-a2ti.onrender.com/donations/${typeId}`)
                     .then(response => {
+                        console.log('Response:', response); // Log the response
                         if (!response.ok) {
                             throw new Error('Network response was not ok ' + response.statusText);
                         }
                         return response.json();
                     })
                     .then(data => {
+                        console.log("Fetched Data:", data);  // Log the fetched data
                         if (data.length > 0) {
                             displayDonations(data);
                         } else {
-                            container.html('<p>No donations found for this type.</p>');
+                            container.innerHTML = '<p>No donations found for this type.</p>';
                         }
                     })
                     .catch(error => {
                         console.error('Error fetching donations:', error);
-                        container.html('<p>Error loading donations.</p>');
+                        container.innerHTML = '<p>Error loading donations.</p>';
                     })
                     .finally(() => {
-                        // Hide spinner
-                        spinner.hide();
+                        // Hide the spinner
+                        spinner.style.display = 'none';
                     });
             } else {
-                container.html('<p>No type ID provided.</p>');
-                spinner.hide();
+                container.innerHTML = '<p>No type ID provided.</p>';
+                spinner.style.display = 'none';
             }
         });
 
         function displayDonations(donations) {
-            const carousel = $('#donation-carousel');
+            const container = document.getElementById('donations-container');
+            container.innerHTML = '';
             donations.forEach(donation => {
-                const donationElement = `
-                    <div class="donation-item wow animate__animated animate__fadeInUp">
-                        <h3>${donation.title}</h3>
-                        <p>Goal: $${donation.goal}</p>
-                        <p>Raised: $${donation.raised}</p>
-                        <p>${donation.case}</p>
-                        <img src="${donation.imageUrl}" alt="${donation.title}" />
-                    </div>
+                const donationElement = document.createElement('div');
+                donationElement.className = 'donation-item';
+                donationElement.innerHTML = `
+                    <h3>${donation.title}</h3>
+                    <p>Goal: $${donation.goal}</p>
+                    <p>Raised: $${donation.raised}</p>
+                    <p>${donation.case}</p>
+                    <img src="${donation.imageUrl}" alt="${donation.title}" />
                 `;
-                carousel.owlCarousel('add', donationElement).owlCarousel('update');
+                container.appendChild(donationElement);
             });
         }
     </script>
-
 </body>
-
 </html>
