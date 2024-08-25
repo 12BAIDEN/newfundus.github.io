@@ -25,9 +25,6 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-grow text-primary" role="status"></div>
-</div>
 
     <!-- Donations Container Start -->
     <div id="donations-container" class="container-xxl bg-light my-5 py-5">
@@ -36,15 +33,6 @@
     <!-- Donations Container End -->
 
     <script>
-  document.addEventListener("DOMContentLoaded", function() {
-        const spinner = document.getElementById('spinner');
-        console.log('Spinner:', spinner); // Log to check if spinner is found
-
-        if (!spinner) {
-            console.error('Spinner element not found');
-            return;
-        }
-
         // Hide the spinner after a maximum of 5 seconds
         setTimeout(() => {
             spinner.style.display = 'none';
