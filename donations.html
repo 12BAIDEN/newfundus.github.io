@@ -38,11 +38,14 @@
     <!-- Donations Container End -->
 
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-    // Get the spinner element
+document.addEventListener("DOMContentLoaded", function() {
     const spinner = document.getElementById('spinner');
 
-    // Get the typeid from the URL
+    // Hide the spinner after a maximum of 5 seconds
+    setTimeout(() => {
+        spinner.style.display = 'none';
+    }, 5000);
+
     const urlParams = new URLSearchParams(window.location.search);
     const typeId = urlParams.get('typeid');
     console.log("Type ID:", typeId);  // Log the type ID
@@ -63,19 +66,16 @@
                 } else {
                     document.getElementById('donations-container').innerHTML = '<p>No donations found for this type.</p>';
                 }
-                // Hide the spinner after data is loaded
-                spinner.style.display = 'none';
+                spinner.style.display = 'none'; // Hide spinner after successful load
             })
             .catch(error => {
                 console.error('Error fetching donations:', error);
                 document.getElementById('donations-container').innerHTML = '<p>Error loading donations.</p>';
-                // Hide the spinner even if there's an error
-                spinner.style.display = 'none';
+                spinner.style.display = 'none'; // Hide spinner on error
             });
     } else {
         document.getElementById('donations-container').innerHTML = '<p>No type ID provided.</p>';
-        // Hide the spinner if no type ID is provided
-        spinner.style.display = 'none';
+        spinner.style.display = 'none'; // Hide spinner if no type ID
     }
 });
 
@@ -122,7 +122,6 @@ function displayDonations(donations) {
         container.appendChild(donationElement);
     });
 }
-
         
     </script>
 </body>
