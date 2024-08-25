@@ -6,15 +6,22 @@
     <title>Donations</title>
 </head>
 <body>
+    <div id="spinner" class="spinner" style="display:none;">
+        <!-- Spinner content, e.g., a loading animation -->
+        <p>Loading...</p>
+    </div>
     <div id="donations-container" class="container-xxl bg-light my-5 py-5">
         <!-- Donations will be displayed here -->
     </div>
 
-    <!-- Include the correct path for your JavaScript file -->
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const spinner = document.getElementById('spinner');
+            const container = document.getElementById('donations-container');
+
+            // Show the spinner
+            spinner.style.display = 'block';
+
             // Get the typeid from the URL
             const urlParams = new URLSearchParams(window.location.search);
             const typeId = urlParams.get('typeid');
@@ -34,19 +41,22 @@
                         if (data.length > 0) {
                             displayDonations(data);
                         } else {
-                            document.getElementById('donations-container').innerHTML = '<p>No donations found for this type.</p>';
+                            container.innerHTML = '<p>No donations found for this type.</p>';
                         }
                     })
                     .catch(error => {
                         console.error('Error fetching donations:', error);
-                        document.getElementById('donations-container').innerHTML = '<p>Error loading donations.</p>';
+                        container.innerHTML = '<p>Error loading donations.</p>';
+                    })
+                    .finally(() => {
+                        // Hide the spinner
+                        spinner.style.display = 'none';
                     });
             } else {
-                document.getElementById('donations-container').innerHTML = '<p>No type ID provided.</p>';
+                container.innerHTML = '<p>No type ID provided.</p>';
+                spinner.style.display = 'none';
             }
         });
-
-
 
         function displayDonations(donations) {
             const container = document.getElementById('donations-container');
