@@ -132,9 +132,9 @@
                             <label for="email">Email Address</label>
                             <input type="email" class="form-control bg-light border-0" id="email" name="email" placeholder="Your Email" required>
                         </div>
-                        <div class="form-group">
-                             <label for="case-description">Case Description</label>
-                             <input type="text" class="form-control bg-light border-0" id="case-description" name="case-description" placeholder="Describe the case" required>
+                        <div>
+                       <label for="reference">Please enter the case title:</label>
+                     <input type="text" id="reference" name="reference" required><br><br>
                         </div>
                         <div class="form-group">
                             <label for="currency">Currency</label>
@@ -274,7 +274,7 @@
                     email: data.email,
                     amount: data['custom-amount'] || data.amount, // Handle both preset and custom amounts
                     phone: data.phone // Assuming you have a phone field in your form
-                    caseDescription = document.getElementById('case-description').value;
+                    reference = document.getElementById('reference').value;
                 })
             })
             .then(response => response.json())
