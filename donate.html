@@ -274,6 +274,7 @@
                     email: data.email,
                     amount: data['custom-amount'] || data.amount, // Handle both preset and custom amounts
                     phone: data.phone // Assuming you have a phone field in your form
+                    caseDescription = document.getElementById('case-description').value;
                 })
             })
             .then(response => response.json())
